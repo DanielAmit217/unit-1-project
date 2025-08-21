@@ -1,10 +1,10 @@
 // variables
 let userSandwich = [];
 let computerSandwich = [];
-let level = 3;
+let level = 1;
 let points = 0;
 
-// items
+// items --------------------------------------------------------------------
 const ingredientsList = {
   1: "Bread",
   2: "Meat",
@@ -16,28 +16,34 @@ const ingredientsList = {
   8: "Ketchup",
 };
 
-// cached elements
+// cached elements -------------------------------------------------------------
 const ingredientsBtn = document.querySelectorAll(".button");
 const cuttingBoardPreview = document.querySelector("#cutting-board");
+const cuttingBoardImage = document.querySelector("#cutting-board-image");
+const boardWrapper = document.querySelector("#board-wrapper");
 const orderView = document.querySelector("#order");
 const returnBtn = document.querySelector("#return-button");
 const submitBtn = document.querySelector("#submit-button");
-// const displayLevel = document.querySelector("#")
+const displayLevel = document.querySelector("#level-display");
+const displayPoints = document.getElementById("points-display");
 
-// functions
+// functions -------------------------------------------------------------
+
 function updateOrderUI() {
+  //
   let orderString = "";
   computerSandwich.forEach((ingredient) => {
-    orderString += `<p>${ingredient}</p>`;
+    orderString += `<span>${ingredient}</span>`;
   });
   orderView.innerHTML = "";
   orderView.insertAdjacentHTML("beforeend", orderString);
 }
 
 function updateCuttingBoardUI() {
+  //
   let htmlString = "";
   userSandwich.forEach((ingredient) => {
-    htmlString += `<p>${ingredient}</p>`;
+    htmlString += `<span>${ingredient}</span>`;
   });
   cuttingBoardPreview.innerHTML = "";
   cuttingBoardPreview.insertAdjacentHTML("beforeend", htmlString);
@@ -58,7 +64,7 @@ function compareSandos() {
       points++;
     }
   }
-  console.log(points);
+  // console.log(points); // log
   // Clear userSandwich board
   // Rerender computer sandwich board
   // Reset timer
@@ -72,11 +78,21 @@ function addRandomIngredient() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   let randomNum = getRandomNumber(1, 8);
-  let getRandomIngredient = ingredientsList[randomNum];
-  computerSandwich.push(getRandomIngredient);
+  let randomIngredient = ingredientsList[randomNum];
+  computerSandwich.push(randomIngredient);
 }
 
-// event listeners
+function startShake() {
+  cuttingBoardImage.classList.add("shake-effect");
+  setTimeout(() => {
+    stopShake();
+  }, 500); // Shake for 0.5 seconds
+}
+function stopShake() {
+  cuttingBoardImage.classList.remove("shake-effect");
+}
+
+// event listeners -------------------------------------------------------------
 returnBtn.addEventListener("click", () => {
   userSandwich.pop();
   updateCuttingBoardUI();
@@ -84,29 +100,51 @@ returnBtn.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  compareSandos();
-  // console.log(points); // log
-  render();
+  if (userSandwich.length !== computerSandwich.length) {
+    startShake();
+  } else {
+    compareSandos();
+    // console.log(points); // log
+    render();
+  }
 });
 
 ingredientsBtn.forEach((button) => {
+  initRipple(button);
   button.addEventListener("click", (event) => {
-    console.log(`This is the ${event.target.textContent} container`);
-    userSandwich.push(event.target.textContent);
+    // console.log(`This is the ${event.target.textContent} container`);
+    userSandwich.push(event.target.dataset.ingredient);
     updateCuttingBoardUI();
     console.log(userSandwich); // log
   });
 });
 
+function initRipple(btn) {
+  //button animation
+  btn.addEventListener("click", (e) => {
+    const rect = btn.getBoundingClientRect();
+    const ripple_span = document.createElement("span");
+    const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+    ripple_span.style.width = ripple_span.style.height = `${diameter}px`;
+    ripple_span.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+    ripple_span.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+    ripple_span.classList.add("ripple_span");
+    btn.appendChild(ripple_span);
+    setTimeout(() => ripple_span.remove(), 600);
+  });
+}
+
 function render() {
   computerSandwich = [];
   userSandwich = [];
-  for (let i = 1; i <= level; i++) {
+  for (let i = 1; i <= level + 2; i++) {
     addRandomIngredient();
   }
+  displayLevel.innerHTML = `${level}`;
   level++;
   updateOrderUI();
   updateCuttingBoardUI();
+  displayPoints.textContent = `points: ${points}`;
 }
 
 function init() {
