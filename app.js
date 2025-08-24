@@ -16,6 +16,19 @@ const ingredientsList = {
   8: "Ketchup",
 };
 
+const emojiDict = {
+  Bread: "./assets/food-emoji's/bread-emoji.png",
+  Meat: "./assets/food-emoji's/salami-emoji.png",
+  Cheese: "./assets/food-emoji's/cheese-emoji.png",
+  Tomato: "./assets/food-emoji's/tomato-emoji.png",
+  Lettuce: "./assets/food-emoji's/lettuce-emoji.png",
+  Cucumber: "./assets/food-emoji's/cucumber-emoji.png",
+  Mayo: "./assets/food-emoji's/mayo-emoji.png",
+  Ketchup: "./assets/food-emoji's/ketchup-emoji.png",
+}
+
+const clickAudio = new Audio("./assets/final-audio/click.mp3")
+
 // cached elements -------------------------------------------------------------
 const ingredientsBtn = document.querySelectorAll(".button");
 const cuttingBoardPreview = document.querySelector("#cutting-board");
@@ -26,48 +39,40 @@ const returnBtn = document.querySelector("#return-button");
 const submitBtn = document.querySelector("#submit-button");
 const displayLevel = document.querySelector("#level-display");
 const displayPoints = document.getElementById("points-display");
+const startBtn = document.getElementById("start-button");
+const displayTimer = document.querySelector(".timer")
+const popUpWindow = document.querySelector(".pop-up")
+const popUpTitle = document.querySelector(".display-message h2");
+const pupUpMsgContent = document.getElementById("message-content")
 
 // functions -------------------------------------------------------------
 
 function updateOrderUI() {
-  //
   let orderString = "";
   computerSandwich.forEach((ingredient) => {
-    orderString += `<span>${ingredient}</span>`;
+    orderString += `<img class="order-images" src=${emojiDict[ingredient]}>`;
   });
   orderView.innerHTML = "";
   orderView.insertAdjacentHTML("beforeend", orderString);
 }
 
 function updateCuttingBoardUI() {
-  //
   let htmlString = "";
   userSandwich.forEach((ingredient) => {
-    htmlString += `<span>${ingredient}</span>`;
+    htmlString += `<img class="order-images" src=${emojiDict[ingredient]}>`
   });
   cuttingBoardPreview.innerHTML = "";
   cuttingBoardPreview.insertAdjacentHTML("beforeend", htmlString);
 }
 
 function compareSandos() {
-  // user > comp
-  // user < comp
-  // user == comp
   let smallerSando =
-    userSandwich.length < computerSandwich.length
-      ? userSandwich
-      : computerSandwich;
-  for (let i = 0; i < smallerSando.length; i++) {
+    userSandwich.length < computerSandwich.length ? userSandwich : computerSandwich;
+  for (let i = 1; i < smallerSando.length -1; i++) {
     if (computerSandwich[i] === userSandwich[i]) {
-      // Implement a pointCalculator(pointsObj) function that you pass raw points to
-      // pointsCalculator({comp: 2, user: 3})
       points++;
     }
   }
-  // console.log(points); // log
-  // Clear userSandwich board
-  // Rerender computer sandwich board
-  // Reset timer
 }
 
 function addRandomIngredient() {
@@ -79,7 +84,8 @@ function addRandomIngredient() {
   }
   let randomNum = getRandomNumber(1, 8);
   let randomIngredient = ingredientsList[randomNum];
-  computerSandwich.push(randomIngredient);
+  let insertBeforeBread = computerSandwich.length - 1;
+  computerSandwich.splice(insertBeforeBread, 0, randomIngredient);
 }
 
 function startShake() {
@@ -92,14 +98,41 @@ function stopShake() {
   cuttingBoardImage.classList.remove("shake-effect");
 }
 
+function countDownTimer(){
+  let sec = 59;
+  let timer = setInterval(function() {
+    displayTimer.innerHTML = `timer: 00:` +sec;
+    sec--;
+    if (sec < 0) {
+      clearInterval(timer)
+      // console.log(points) // log
+      popUpWindow.style.display = "";
+      popUpTitle.textContent = "Time Over"
+      pupUpMsgContent.innerHTML = `Your score is: ${points} </br> You got to level ${level - 1}` 
+      startBtn.textContent = "Start Over"
+      level = 1
+    }
+  }, 1000)
+}
+
 // event listeners -------------------------------------------------------------
+
+startBtn.addEventListener("click", () =>{
+  popUpWindow.style.display = "none";
+  countDownTimer();
+  clickAudio.play();
+  render();
+});
+
 returnBtn.addEventListener("click", () => {
+  clickAudio.play();  
   userSandwich.pop();
   updateCuttingBoardUI();
   console.log(userSandwich); // log
 });
 
 submitBtn.addEventListener("click", () => {
+  clickAudio.play();
   if (userSandwich.length !== computerSandwich.length) {
     startShake();
   } else {
@@ -112,12 +145,21 @@ submitBtn.addEventListener("click", () => {
 ingredientsBtn.forEach((button) => {
   initRipple(button);
   button.addEventListener("click", (event) => {
-    // console.log(`This is the ${event.target.textContent} container`);
-    userSandwich.push(event.target.dataset.ingredient);
+    // console.log(`This is the ${event.target.textContent} container`); // log
+    const clickedIngredient = event.target.dataset.ingredient
+    userSandwich.push(clickedIngredient);
+    playAudio(clickedIngredient)
     updateCuttingBoardUI();
     console.log(userSandwich); // log
   });
 });
+
+function playAudio(ingredient) {
+  // console.log(ingredient) // log
+  const audio = new Audio(`./assets/final-audio/${ingredient.toLowerCase()}.mp3`)
+  // console.log(audio) // log
+  audio.play();
+}
 
 function initRipple(btn) {
   //button animation
@@ -135,7 +177,7 @@ function initRipple(btn) {
 }
 
 function render() {
-  computerSandwich = [];
+  computerSandwich = ["Bread", "Bread"];
   userSandwich = [];
   for (let i = 1; i <= level + 2; i++) {
     addRandomIngredient();
@@ -145,10 +187,5 @@ function render() {
   updateOrderUI();
   updateCuttingBoardUI();
   displayPoints.textContent = `points: ${points}`;
+  console.log(computerSandwich)
 }
-
-function init() {
-  render();
-}
-
-init();

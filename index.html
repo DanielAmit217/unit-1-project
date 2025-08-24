@@ -8,129 +8,77 @@
     <link rel="stylesheet" href="./style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet"/>
   </head>
   <body>
+    <div class="pop-up">
+      <div class="display-message">
+        <h2>Sandwich Memory Game</h2>
+        <div id="message-content">Welcome!<br> The goal of the game is to get as many points as you can.<br> each level the number of ingredients gets bigger<br> So keep your eyes sharp! </div>
+      </div>
+      <button id="start-button">start</button>
+    </div>
+    <div class="game">
     <h1>
-      <div class="level">
-        level:
+      <div class="level"> level:
         <div id="level-display"></div>
       </div>
-      <div class="timer">timer: 0:00</div>
+      <div class="timer">timer: 01:00 </div>
       <div id="points-display">points: 0</div>
     </h1>
     <div class="street-window">
       <div class="order-window">
-        <div id="awning">
-          order:
+        <div id="awning"> order:    
           <div id="order"></div>
         </div>
       </div>
     </div>
     <div class="inventory">
       <section>
-        <div
-          class="container button ingredient"
-          id="Bread"
-          data-ingredient="Bread"
-        >
-          <img
-            src="https://staging.svgrepo.com/show/401229/bread.svg"
-            data-ingredient="Bread"
-          />
+        <div class="container button ingredient" id="Bread" data-ingredient="Bread">
+          <img src="https://staging.svgrepo.com/show/401229/bread.svg" data-ingredient="Bread"/>
         </div>
-        <div
-          class="container button ingredient"
-          id="Meat"
-          data-ingredient="Meat"
-        >
-          <img
-            src="https://staging.svgrepo.com/show/111608/salami.svg"
-            data-ingredient="Meat"
-          />
+        <div class="container button ingredient" id="Meat" data-ingredient="Meat">
+          <img src="https://staging.svgrepo.com/show/111608/salami.svg" data-ingredient="Meat"/>
         </div>
-        <div
-          class="container button ingredient"
-          id="Cheese"
-          data-ingredient="Cheese"
-        >
-          <img
-            src="https://staging.svgrepo.com/show/475182/cheese.svg"
-            data-ingredient="Cheese"
-          />
+        <div class="container button ingredient" id="Cheese" data-ingredient="Cheese">
+          <img src="https://staging.svgrepo.com/show/475182/cheese.svg" data-ingredient="Cheese"/>
         </div>
-        <div
-          class="container button ingredient"
-          id="Tomato"
-          data-ingredient="Tomato"
-        >
-          <img
-            src="https://staging.svgrepo.com/show/475232/tomato.svg"
-            data-ingredient="Tomato"
-          />
+        <div class="container button ingredient" id="Tomato" data-ingredient="Tomato">
+          <img src="https://staging.svgrepo.com/show/475232/tomato.svg" data-ingredient="Tomato"/>
         </div>
       </section>
       <main>
         <div class="working-surface">
           <div class="cutting-board-container">
-            <!-- <div id="board-wrapper"> -->
-              <img
-                id="cutting-board-image"
-                src="./assets/cuttingboard.png"
-                alt=""
-              />
-            <!-- </div> -->
+              <img id="cutting-board-image" src="./assets/cuttingboard.png" alt=""/>
             <div id="cutting-board"></div>
           </div>
-          <button id="return-button">return</button>
-          <button id="submit-button">submit</button>
+          <div id="operator-buttons-container">
+            <button id="return-button">return</button>
+            <button id="submit-button">submit</button>
+          </div>
         </div>
       </main>
       <article>
-        <div
-          class="right-containers button ingredient"
-          id="Lettuce"
-          data-ingredient="Lettuce"
-        >
-          <img
-            src="https://staging.svgrepo.com/show/475202/lettuce.svg"
-            data-ingredient="Lettuce"
-          />
+        <div class="right-containers button ingredient" id="Lettuce" data-ingredient="Lettuce">
+          <img src="https://staging.svgrepo.com/show/475202/lettuce.svg" data-ingredient="Lettuce"/>
         </div>
-        <div
-          class="right-containers button ingredient"
-          id="Cucumber"
-          data-ingredient="Cucumber"
-        >
-          <img
-            src="https://staging.svgrepo.com/show/475185/cucumber.svg"
-            data-ingredient="Cucumber"
-          />
+        <div class="right-containers button ingredient" id="Cucumber" data-ingredient="Cucumber">
+          <img src="https://staging.svgrepo.com/show/475185/cucumber.svg" data-ingredient="Cucumber"/>
         </div>
       </article>
       <aside>
         <div class="sauces-container">
           <div class="bottle button" id="mayo-bottle" data-ingredient="Mayo">
-            <img
-              src="https://staging.svgrepo.com/show/133498/mayonnaise.svg"
-              data-ingredient="Mayo"
-            />
+            <img src="https://staging.svgrepo.com/show/133498/mayonnaise.svg" data-ingredient="Mayo"/>
           </div>
-          <div
-            class="bottle button"
-            id="ketchup-bottle"
-            data-ingredient="Ketchup"
-          >
-            <img
-              src="https://staging.svgrepo.com/show/417231/ketchup.svg"
-              data-ingredient="Ketchup"
-            />
+          <div class="bottle button" id="ketchup-bottle" data-ingredient="Ketchup">
+            <img src="https://staging.svgrepo.com/show/417231/ketchup.svg" data-ingredient="Ketchup"/>
           </div>
         </div>
       </aside>
+    </div>
     </div>
   </body>
 </html>

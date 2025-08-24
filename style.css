@@ -2,6 +2,7 @@
   box-sizing: border-box;
   font-family: "Rowdies", sans-serif;
 }
+
 .rowdies-light {
   font-family: "Rowdies", sans-serif;
   font-weight: 300;
@@ -26,6 +27,45 @@ html, body {
     height: 100%;
 }
 
+.pop-up {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 75%;
+    background: white;
+    z-index: 999;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/067/107/556/non_2x/red-and-white-striped-shop-awning-market-canopy-tent-sun-shade-roof-cafe-awning-shop-striped-canopy-seamless-pattern-kiosk-window-border-illustration-isolated-on-gray-background-vector.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 5px solid rgba(207, 184, 79, 0.897) ;
+    border-radius: 2%;
+}
+
+.display-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#start-button {
+    border-radius: 10%;
+    color: black;
+    width: 15%;
+    height: 10%;
+    border-color: rgb(222, 101, 101);
+    border-width: medium;
+    font-size: larger;
+    cursor: pointer;
+}
+
 h1 {
     position: absolute;
     top: 0%;
@@ -33,37 +73,35 @@ h1 {
     width: 100%;
     margin: 0;
     border: 4px solid black;
-    background-color: rgb(214, 220, 100);
-    /* background-image: url(https://img.freepik.com/free-vector/transparent-ribbed-glass-background_107791-33174.jpg); */
-    /* background-repeat: no-repeat; */
+    background-color: rgb(236, 225, 107);
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
 .level {
     display: flex;
 }
+
 .street-window {
     position: absolute;
     top: 20%;
     bottom: 36%;
     width: 100%;
-    /* background: rgb(130, 130, 130); */
     background-image: url(https://static.vecteezy.com/system/resources/previews/010/826/194/non_2x/cartoon-brick-wall-background-free-vector.jpg);
     background-repeat: auto;
     background-size: 50% auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
 }
+
 .order-window {
     width: 60%;
     height: 100%;
-    border: 3px solid black;
-    /* background-color: rgb(115, 226, 222); */
+    border: 5px solid black;
     font-size: large;
     background-image: url(https://t3.ftcdn.net/jpg/02/38/05/06/360_F_238050679_TdWFQA90quPhnjdF3C7y61ipq3A1jt52.jpg);
     background-size: cover;
@@ -77,12 +115,14 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 80%;
+    width: 90%;
+    height: 20%;
+    border: 3px solid black;
+    border-bottom: none;
 }
 
 #order {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
@@ -94,8 +134,6 @@ h1 {
     width: 100%;
     height: 36%;
     display: flex;
-    /* background-color: rgba(49, 11, 11, 0.836); */
-    /* border-top: 5px black; */
     background-image: url(https://freesvg.org/img/1454771477.png)
 }
 
@@ -103,13 +141,14 @@ h1 {
     cursor: pointer;
     overflow: hidden;
     transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
-    position: relative;
-    
+    position: relative;    
 }
+
 .button:hover {
   border-color: #ababab;
   transform: translateY(-3px);
 }
+
 .button:active {
   transform: translateY(-1px);
 }
@@ -122,6 +161,7 @@ h1 {
   animation: ripple_anim 0.6s linear;
   pointer-events: none;
 }
+
 @keyframes ripple_anim {
   to {
     transform: scale(4);
@@ -138,14 +178,15 @@ h1 {
 }
 
 section {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     width: 35%;
-    justify-content: center;
-    
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
 }
+
 .container {
-    width: 40%; 
+    width: 75%; 
+    height: 80%;
     border: 3px solid black; 
     background-color: rgba(138, 138, 138, 0.654); 
     margin: 20px; 
@@ -162,75 +203,91 @@ main {
     justify-content: center;
     align-items: center;
 }
+
 .working-surface {
     background-color: rgb(63, 63, 63);
-    width: 100%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     flex-direction: column;
-    align-content: center;
+    align-content: flex-start;
     border-radius: 120px;
 }
-button {
-    width: 17%;
-    height: 30%;
-    color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    flex-direction: column;
-    border-radius: 50%;
 
+#operator-buttons-container {
+    bottom: 10%;
 }
+
+#operator-buttons-container button {
+    font-weight: 100;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 15px;
+}
+
 .cutting-board-container {
     width: 77%;
-    height: 85%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 7px;
     position: relative;
-    
 }
-.cutting-board-container img {
-    position: absolute;
+
+.cutting-board-container > img {
     border-radius: 30px;
     transform: rotateZ(90deg);
-    width: 60%;
-
+    width: 45%;
 }
+
 #cutting-board {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     border-radius: 7px;
     position: absolute;
+    margin-left: 15%;
+}
+
+#cutting-board .order-images {
+    width: 50%;
+    margin-left: -42.5%;
+
+}
+
+.order-images {
+    width: 20%;
+    display: inline-block;
+    margin-left: -15%;
+
+}
+.order-images:first-child {
+    margin-left: 0;
 }
 
 .shake-effect {
-    animation: shake 0.5s; /* Adjust duration as needed */
-    animation-iteration-count: infinite; /* Or a specific number */
+    animation: shake 0.5s; 
+    animation-iteration-count: infinite; 
 }
 
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-    }
+    0% { transform: translate(1px, 1px) rotate(90%); }
+    10% { transform: translate(-1px, -2px) rotate(89deg); }
+    20% { transform: translate(-3px, 0px) rotate(91deg); }
+    30% { transform: translate(3px, 2px) rotate(90deg); }
+    40% { transform: translate(1px, -1px) rotate(91deg); }
+    50% { transform: translate(-1px, 2px) rotate(89deg); }
+    60% { transform: translate(-3px, 1px) rotate(90deg); }
+    70% { transform: translate(3px, 1px) rotate(89deg); }
+    80% { transform: translate(-1px, -1px) rotate(91deg); }
+    90% { transform: translate(1px, 2px) rotate(90deg); }
+    100% { transform: translate(1px, -2px) rotate(89deg); }
+}
+
 article {
     width: 15%;
     display: flex;
@@ -238,6 +295,7 @@ article {
     justify-content: center;
     align-items: center;
 }
+
 .right-containers {
     width: 80%;
     height: 40%;
@@ -248,12 +306,14 @@ article {
     justify-content: center;
     align-items: center;
 }
+
 aside {
     width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .sauces-container {
     border: 3px solid black; 
     background-color: rgba(138, 138, 138, 0.654);
@@ -264,6 +324,7 @@ aside {
     justify-content: center;
     align-items: center;
 }
+
 .bottle {
     width: 80%;
     height: 40%;
@@ -272,12 +333,12 @@ aside {
     justify-content: center;
     align-items: center;
     border-radius: 10%;
-
 }
 
 #mayo-bottle {
     background-color: rgb(231, 231, 181);
 }
+
 #ketchup-bottle {
     background-color: rgb(250, 62, 62);
 }
