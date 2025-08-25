@@ -1,8 +1,8 @@
 # Sandwich Building Game
 ![game main screen screenshot](./assets/main-screen-shot.png)
 ## The game
-This [_game_](link-to-game) is a point/ time based game!\
-The goal of the _game_ is to make as many sandwiches as you can within a minute. But be careful because you have to get as many points as you can on the way, for each currect ingredient you make, you get a point!\
+This [_game_](link-to-game) is a point/time based game!\
+The goal of the _game_ is to make as many sandwiches as you can within a minute. But be careful-because you have to get as many points as you can on the way, for each currect ingredient you make, you get a point!\
 __I__ chose this _game_ because when we first were introduced to the convept of the project, I wanted to make something that I know I used to play when I was little.\
 If you grew up in Israel in the early 2000's, you probably remember a game named [__"Falafel king״__](https://www.falafelgame.com/eng/falafel.html).\
 I wanted to make something that hit home, so I landed on making a food game.
@@ -28,4 +28,4 @@ I definitly want this game to be A lot more flushed out in the future, as curren
 1. Add costumer orderes - make this game closer to the [Flipine Studios](https://www.flipline.com/) Papa Louie games, have costumer orders which you get punished for making wrong.
 2. Background music - I want to make background music that gets more intense the less time you have left.
 3. Better graphics - the current live updating graphics on the game are really simple, so maybe make the sandwich that builds up on the cutting board prettier.
-
+4. Definitly want to change the comparison mechanic to not compare strings, but rather compare key values, less error prone 
