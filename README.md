@@ -22,6 +22,7 @@ For this Game I used:
 1. JavaScript
 2. Css
 3. HTML
+5. Adobe online photo editor
 
 ### Plans for the future
 I definitly want this game to be A lot more flushed out in the future, as currently it is a simple score based game and there is no real competition or srtategy.
