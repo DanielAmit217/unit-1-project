@@ -47,7 +47,7 @@ const pupUpMsgContent = document.getElementById("message-content")
 
 // functions -------------------------------------------------------------
 
-function updateOrderUI() {
+function updateOrderUI() { // puts the order on the screen
   let orderString = "";
   computerSandwich.forEach((ingredient) => {
     orderString += `<img class="order-images" src=${emojiDict[ingredient]}>`;
@@ -56,7 +56,7 @@ function updateOrderUI() {
   orderView.insertAdjacentHTML("beforeend", orderString);
 }
 
-function updateCuttingBoardUI() {
+function updateCuttingBoardUI() { // puts the assembled ingredients on the screen
   let htmlString = "";
   userSandwich.forEach((ingredient) => {
     htmlString += `<img class="order-images" src=${emojiDict[ingredient]}>`
@@ -65,7 +65,7 @@ function updateCuttingBoardUI() {
   cuttingBoardPreview.insertAdjacentHTML("beforeend", htmlString);
 }
 
-function compareSandos() {
+function compareSandos() { // compares the input sandwich with the order 
   let smallerSando =
     userSandwich.length < computerSandwich.length ? userSandwich : computerSandwich;
   for (let i = 1; i < smallerSando.length -1; i++) {
@@ -75,7 +75,7 @@ function compareSandos() {
   }
 }
 
-function addRandomIngredient() {
+function addRandomIngredient() { // puts random ingredients within the order
   function getRandomNumber(min, max) {
     //random number generator (got it from google)
     min = Math.ceil(min);
@@ -88,7 +88,7 @@ function addRandomIngredient() {
   computerSandwich.splice(insertBeforeBread, 0, randomIngredient);
 }
 
-function startShake() {
+function startShake() { // shake effect for cutting board
   cuttingBoardImage.classList.add("shake-effect");
   setTimeout(() => {
     stopShake();
@@ -98,7 +98,7 @@ function stopShake() {
   cuttingBoardImage.classList.remove("shake-effect");
 }
 
-function countDownTimer(){
+function countDownTimer(){ // timer
   let sec = 59;
   let timer = setInterval(function() {
     displayTimer.innerHTML = `timer: 00:` +sec;
@@ -115,7 +115,7 @@ function countDownTimer(){
   }, 1000)
 }
 
-function render() {
+function render() { // reset
   computerSandwich = ["Bread", "Bread"];
   userSandwich = [];
   for (let i = 1; i <= level + 2; i++) {
@@ -129,30 +129,30 @@ function render() {
   console.log(computerSandwich)
 }
 
-function playAudio(ingredient) {
+function playAudio(ingredient) { // audio 
   // console.log(ingredient) // log
   const audio = new Audio(`./assets/final-audio/${ingredient.toLowerCase()}.mp3`)
   // console.log(audio) // log
   audio.play();
 }
 
-// event listeners -------------------------------------------------------------
+// event listeners - buttons-------------------------------------------------------------
 
-startBtn.addEventListener("click", () =>{
+startBtn.addEventListener("click", () =>{ // start/ play again 
   popUpWindow.style.display = "none";
   countDownTimer();
   clickAudio.play();
   render();
 });
 
-returnBtn.addEventListener("click", () => {
+returnBtn.addEventListener("click", () => { // return  button
   clickAudio.play();  
   userSandwich.pop();
   updateCuttingBoardUI();
   console.log(userSandwich); // log
 });
 
-submitBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", () => { // submit button
   clickAudio.play();
   if (userSandwich.length !== computerSandwich.length) {
     startShake();
@@ -163,7 +163,7 @@ submitBtn.addEventListener("click", () => {
   }
 });
 
-ingredientsBtn.forEach((button) => {
+ingredientsBtn.forEach((button) => { // every ingredient button
   initRipple(button);
   button.addEventListener("click", (event) => {
     // console.log(`This is the ${event.target.textContent} container`); // log
@@ -174,6 +174,8 @@ ingredientsBtn.forEach((button) => {
     console.log(userSandwich); // log
   });
 });
+
+// misc ------------------------------------------------------------------
 
 function initRipple(btn) {
   //button animation
