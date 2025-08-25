@@ -115,6 +115,27 @@ function countDownTimer(){
   }, 1000)
 }
 
+function render() {
+  computerSandwich = ["Bread", "Bread"];
+  userSandwich = [];
+  for (let i = 1; i <= level + 2; i++) {
+    addRandomIngredient();
+  }
+  displayLevel.innerHTML = `${level}`;
+  level++;
+  updateOrderUI();
+  updateCuttingBoardUI();
+  displayPoints.textContent = `points: ${points}`;
+  console.log(computerSandwich)
+}
+
+function playAudio(ingredient) {
+  // console.log(ingredient) // log
+  const audio = new Audio(`./assets/final-audio/${ingredient.toLowerCase()}.mp3`)
+  // console.log(audio) // log
+  audio.play();
+}
+
 // event listeners -------------------------------------------------------------
 
 startBtn.addEventListener("click", () =>{
@@ -154,13 +175,6 @@ ingredientsBtn.forEach((button) => {
   });
 });
 
-function playAudio(ingredient) {
-  // console.log(ingredient) // log
-  const audio = new Audio(`./assets/final-audio/${ingredient.toLowerCase()}.mp3`)
-  // console.log(audio) // log
-  audio.play();
-}
-
 function initRipple(btn) {
   //button animation
   btn.addEventListener("click", (e) => {
@@ -174,18 +188,4 @@ function initRipple(btn) {
     btn.appendChild(ripple_span);
     setTimeout(() => ripple_span.remove(), 600);
   });
-}
-
-function render() {
-  computerSandwich = ["Bread", "Bread"];
-  userSandwich = [];
-  for (let i = 1; i <= level + 2; i++) {
-    addRandomIngredient();
-  }
-  displayLevel.innerHTML = `${level}`;
-  level++;
-  updateOrderUI();
-  updateCuttingBoardUI();
-  displayPoints.textContent = `points: ${points}`;
-  console.log(computerSandwich)
 }
